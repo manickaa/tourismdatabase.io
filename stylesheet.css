@@ -1,5 +1,8 @@
+body, html {
+  height: 100%;
+}
 .bg { 
-  background-image: url("./images/image3.png"); 
+  background-image: url("./image3.png"); 
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
@@ -70,7 +73,4 @@ li a[id="menuLink"] {
 }
 th {
 	color: white;
-}
-#home {
-	padding-bottom: 40%;
 }
