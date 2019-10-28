@@ -71,9 +71,6 @@ li a[id="menuLink"] {
     padding: 5px 16px;
     text-decoration: none;
 }
-th {
+th, td {
 	color: white;
-}
-tb {
-	color: yellow;
 }
