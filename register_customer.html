@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+        <meta charset="UTF=8">
+	<title>Tourism Database</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+    <script src = "customerregistration.js"></script>
+    <div class = "bg">
+      <div id = "navigation-bar">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-fade bg-faded">
+		    <a class="navbar-brand" href="./">Tourism Database</a>
+		    <div class="navbar-collapse collapse justify-content-center" id="collapsibleNavbar">
+		        <ul class="navbar-nav">
+			    <li class="nav-item"><a class="nav-link" href="./home.html">Home</a></li>
+		            <li class="nav-item"><a class="nav-link" href="./admin.html">Admin</a></li>
+		            <li class="nav-item"><a class="nav-link" href="./customer.html">Customer</a></li>
+		        </ul>
+		    </div>
+        </nav>
+      </div>
+        <div id = "customer-page">
+                <div class="form">
+                        <form>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">First Name:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="firstname" placeholder="Your First Name" required >
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Last Name:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="lastname" placeholder="Your Last Name" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Middle Name:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="middlename" placeholder="Your Middle Name (optional)">
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Street Number:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="streetnumber" placeholder="Street Number" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">City:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="city" placeholder="Eg:Seattle" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">State:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="state" placeholder="Eg:Washington" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Country:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="country" placeholder="Eg:USA" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Postal Code:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="postalcode" placeholder="Eg:98101" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="example-tel-input" class="col-2 col-form-label">Phone Number</label>
+                                        <div class="col-6">
+                                        <input class="form-control" type="tel" id="phonenumber" pattern="^\d{4}-\d{3}-\d{4}$" placeholder="xxxx-xxx-xxxx" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="exampleInputEmail1" class="col-2 col-form-label">Email ID</label>
+                                        <div class="col-6">
+                                        <input type="email" class="form-control" id="email" placeholder="Eg:abcd@gmail.com" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Passport Number:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="passportnumber" pattern="^[A-PR-WYa-pr-wy][1-9]\d\s?\d{4}[1-9]$"placeholder="Eg:P2309876" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="formGroupExampleInput" class="col-2 col-form-label">Passport CounrtyOfIssue:</label>
+                                        <div class="col-6">
+                                        <input type="text" class="form-control" id="passportcountry" placeholder="Eg:USA" required>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                        <label for="example-date-input" class="col-2 col-form-label">Passport Expiry Date:</label>
+                                        <div class="col-6">
+                                <input class="form-control" type="date"  id="expirydate" value="2019-10-24"required>
+                                        </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark" id="submitInfo">Submit</button>
+                        </form>
+                        <p id="test">
+                        </p>
+                </div>
+        </div>
+</div>
+</body>
