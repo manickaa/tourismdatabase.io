@@ -28,7 +28,7 @@ body, html {
 } 
 #customer-page {
 	padding-top: 3%;
-	padding-bottom: 15%;
+	padding-bottom: 9%;
 	padding-left: 2%;
 	padding-right:2%;
 }
@@ -71,6 +71,6 @@ li a[id="menuLink"] {
     padding: 5px 16px;
     text-decoration: none;
 }
-th {
+th, td {
 	color: white;
 }
