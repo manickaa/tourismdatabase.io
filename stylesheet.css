@@ -74,3 +74,11 @@ li a[id="menuLink"] {
 th, td {
 	color: white;
 }
+#bg_registration {
+  background-image: url("./image3.png"); 
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 30%;	
+}
