@@ -82,3 +82,11 @@ th, td {
   background-size: cover;
   padding-bottom: 30%;	
 }
+#intro {
+	color: white;
+	font-size: 5rem;
+	font-style: italic;
+	padding-left: 20%;
+	padding-bottom: 20%;
+	padding-top: 20%;
+}
