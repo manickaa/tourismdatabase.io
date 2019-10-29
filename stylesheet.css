@@ -70,6 +70,7 @@ li a[id="menuLink"] {
     text-align: center;
     padding: 5px 16px;
     text-decoration: none;
+    background-color: aliceblue;
 }
 th, td {
 	color: white;
