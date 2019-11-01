@@ -25,72 +25,93 @@
             <br />
         </div>
         <div class="admin-page">
-        <div class = "form">
-            <form method="get">
-                <fieldset>
-                    <legend>Search Assignments</legend>
-                    <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">Travel Location</label>
+            <div class = "form">
+                <form method="get">
+                    <fieldset>
+                        <legend>Manage Assignments</legend>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Booking ID</label>
                             <div class="col-6">
-                            <input type="text" class="form-control" id="location" required>
+                                <input type="text" class="form-control" id="booking_ID" required>
                             </div>
-                    </div>
-                    <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">Tour Guide First Name</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Location</label>
                             <div class="col-6">
-                            <input type="text" class="form-control" id="firstname" required>
+                                <input type="text" class="form-control" id="firstname" required>
                             </div>
-                    </div>
-                    <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">Tour Guide Last Name</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Tour Guide</label>
                             <div class="col-6">
-                            <input type="text" class="form-control" id="lastname" required>
+                                <input type="text" class="form-control" id="lastname" required>
                             </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark" id="submitInfo">Search</button>
-                    <button type="submit" class="btn btn-dark" id="submitInfo">Add</button>
-                </fieldset>
-            </form>
-        </div>
-             <div id = "customer-page">
-            <table class="table table-bordered">
+                        </div>
+                        <button type="submit" class="btn btn-dark" id="submitInfo">Add</button>
+                        <button type="submit" class="btn btn-dark" id="submitInfo">Search</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id = "customer-page">
+                <table class="table table-bordered">
                     <thead>
-                      <tr>
-                        <th scope="col">Assignment ID#</th> 
-                        <th scope="col">First_Name</th>
-                        <th scope="col">Last_Name</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <tr>
+                            <th scope="col">Assignment ID#</th>
+                            <th scope="col">Booking ID#</th>
+                            <th scope="col">Guide First Name</th>
+                            <th scope="col">Guide Last Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Departure Date</th>
+                            <th scope="col">Arrival Date</th>
+                            <th scope="col">Total Adults + Children</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Abe</td>
-                        <td>Epstein</td>
-                        <td>Hawaii</td>
-                        <td><button type="button" class="btn btn-dark">Edit</button></td>
-                        <td><button type="button" class="btn btn-dark">Delete</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Arun</td>
-                        <td>Kumar</td>
-                        <td>Krabi</td>
-                        <td><button type="button" class="btn btn-dark">Edit</button></td>
-                        <td><button type="button" class="btn btn-dark">Delete</button></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>Ross</td>
-                        <td>Geller</td>
-                        <td>Maldives</td>
-                        <td><button type="button" class="btn btn-dark">Edit</button></td>                       
-                        <td><button type="button" class="btn btn-dark">Delete</button></td>
-                      </tr> 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>125</td>
+                            <td>Abe</td>
+                            <td>Epstein</td>
+                            <td>Hawaii</td>
+                            <td>Bob Smith</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>7</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>586</td>
+                            <td>Arun</td>
+                            <td>Kumar</td>
+                            <td>Krabi</td>
+                            <td>Rachel Green</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>14</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>111</td>
+                            <td>Ross</td>
+                            <td>Geller</td>
+                            <td>Maldives</td>
+                            <td>Abe Lincoln</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>2</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr> 
                     </tbody>
-            </table>
-      </div>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
