@@ -1,0 +1,128 @@
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+<body>
+    <div class="bg">
+        <div id = "navigation-bar">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-fade bg-faded">
+                    <a class="navbar-brand" href="./">Tourism Database</a>
+                    <div class="navbar-collapse collapse justify-content-center" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./customers.html">Customer</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./bookings.html">Bookings</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./assignments.html">Assignments</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./tour_guides.html">Tour guides</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./locations.html">Locations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./ratings.html">Ratings</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./payment.html">Payment</a></li>
+                        </ul>
+                    </div>
+                </nav>
+        </div>
+        <div class="admin-page">
+            <div class = "form">
+                <form method="get">
+                    <fieldset>
+                        <legend>Manage Assignments</legend>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Booking ID</label>
+                            <div class="col-6">
+                                <select name="booking_id" size="1" class="form-control" id="booking_id">
+                                    <option value="0"></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Location</label>
+                            <div class="col-6">
+                                <select name="location" size="1" class="form-control" id="location">
+                                    <option value="0"></option>
+                                    <option value="1">Paris, France</option>
+                                    <option value="2">Bangkok, Thailand</option>
+                                    <option value="3">Las Vegas, Nevada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Tour Guide</label>
+                            <div class="col-6">
+                                <select name="guide_name" size="1" class="form-control" id="guide_name">
+                                    <option value="blank"></option>
+                                    <option value="john_doe">John Doe</option>
+                                    <option value="jane_doe">Jane Doe</option>
+                                    <option value="mary_brown">Mary Brown</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-dark" id="submitInfo">Search</button>
+                        <a href="assignment_add.html" class="btn btn-dark" id="submitInfo">Add New Assignment</a>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div id = "customer-page">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Assignment ID#</th>
+                            <th scope="col">Booking ID#</th>
+                            <th scope="col">Guide</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Departure Date</th>
+                            <th scope="col">Arrival Date</th>
+                            <th scope="col"># Adults</th>
+                            <th scope="col"># Children</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>125</td>
+                            <td>Abe Epstein</td>
+                            <td>Hawaii</td>
+                            <td>Bob Smith</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>7</td>
+                            <td>2</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>586</td>
+                            <td>Arun Kumar</td>
+                            <td>Krabi</td>
+                            <td>Rachel Green</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>4</td>
+                            <td>7</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>111</td>
+                            <td>Ross Gellar</td>
+                            <td>Maldives</td>
+                            <td>Abe Lincoln</td>
+                            <td>5-1-2020</td>
+                            <td>10-1-2020</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-dark">Delete</button></td>
+                            <td><a href="assignment_edit.html" class="btn btn-dark">Edit</a></td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
