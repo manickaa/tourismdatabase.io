@@ -10,11 +10,11 @@ body, html {
   padding-bottom: 30%;
 }
 .nav-item{
-	font-size: 2rem;
+	font-size: 1.25rem;
 	color: black;
 }
 .navbar-expand-lg .navbar-nav .nav-link {
-    padding-right: 2.5rem;
+    padding-right: 1.5rem;
     padding-left: 0.5rem;
 }
 .navbar-brand {
