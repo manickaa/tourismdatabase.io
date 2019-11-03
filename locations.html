@@ -30,19 +30,17 @@
                     <fieldset>
                         <legend>Manage Travel Locations</legend>
                         <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">City</label>
                             <div class="col-6">
-                                <input type="text" class="form-control" id="booking_ID" required>
+                                <select name="location" size="1" class="form-control" id="location">
+                                    <option value="0"></option>
+                                    <option value="1">Paris, France</option>
+                                    <option value="2">Bangkok, Thailand</option>
+                                    <option value="3">Las Vegas, Nevada</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">Country</label>
-                            <div class="col-6">
-                                <input type="text" class="form-control" id="firstname" required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-dark" id="submitInfo">Add</button>
                         <button type="submit" class="btn btn-dark" id="submitInfo">Search</button>
+                        <a href="location_add.html" type="submit" class="btn btn-dark" id="submitInfo">Add New Location</a>
                     </fieldset>
                 </form>
             </div>

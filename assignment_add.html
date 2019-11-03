@@ -4,13 +4,14 @@
     <div class="bg">
         <div class="admin-page">
             <div class="form">
-                <form method="get" action="">
+                <form method="get">
                     <fieldset>
-                        <legend>Update Assignment:</legend>
+                        <legend>Add New Assignment:</legend>
                         <div class="form-group row">
-                            <label for="formGroupExampleInput" class="col-2 col-form-label">Booking ID</label>
+                            <label for="formGroupExampleInput" class="col-2 col-form-label">Booking ID#</label>
                             <div class="col-6">
                                 <select name="assign_ide" size="1" class="form-control" id="guide_name" required>
+                                    <option value="0"></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -22,6 +23,7 @@
                             <label for="formGroupExampleInput" class="col-2 col-form-label">Tour Guide</label>
                             <div class="col-6">
                                 <select name="guide_name" size="1" class="form-control" id="guide_name" required>
+                                    <option value="none"></option>
                                     <option value="john_smith">John Smith</option>
                                     <option value="john_doe">John Doe</option>
                                     <option value="jane_doe">Jane Doe</option>
@@ -29,7 +31,9 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-dark" id="submitInfo">Update</button>
+                        <button type="submit" class="btn btn-dark" id="submitInfo">Add</button>
+                        <a href="assignments.html" class="btn btn-dark" id="submitInfo">Return to Manage Assignments</a>
+
                     </fieldset>
                 </form>
             </div> 
