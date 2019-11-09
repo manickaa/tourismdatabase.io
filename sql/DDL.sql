@@ -153,19 +153,27 @@ CREATE TABLE `ratings`
 INSERT INTO `ratings` VALUES
 (1, 1, 1, 5, 'Excellent'),
 (2, 2, 2, 4, 'Good');
+--
 --Adding foreign key for `bookings`
+--
 ALTER TABLE `bookings`
     ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`travelLocation_ID`) REFERENCES `travel_location`(`travelLocation_ID`) ON DELETE CASCADE,
     ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`customer_ID`) REFERENCES `customers`(`customer_ID`) ON DELETE CASCADE;
+--
 --Adding foreign key for `assignment`
+--
 ALTER TABLE `assignment`
     ADD CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`booking_ID`) REFERENCES `bookings`(`booking_ID`) ON DELETE CASCADE,
     ADD CONSTRAINT `assignment_ibfk_2` FOREIGN KEY (`travelLocation_ID`) REFERENCES `travel_location`(`travelLocation_ID`) ON DELETE CASCADE,
     ADD CONSTRAINT `assignment_ibfk_3` FOREIGN KEY (`tourGuide_ID`) REFERENCES `tour_guide`(`tourGuide_ID`) ON DELETE CASCADE;
+--
 --Adding foreign key for `payment`
+--
 ALTER TABLE `payment`
     ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`booking_ID`) REFERENCES `bookings`(`booking_ID`) ON DELETE CASCADE;
+--
 --Adding foreign key for `ratings`
+--
 ALTER TABLE `ratings`
     ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`travelLocation_ID`) REFERENCES `travel_location`(`travelLocation_ID`),
     ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`customer_ID`) REFERENCES `customers`(`customer_ID`);
