@@ -17,8 +17,8 @@ CREATE TABLE `customers`
 (
     `customer_ID` int(11) NOT NULL AUTO_INCREMENT,
     `first_name` varchar(255) NOT NULL,
-    `last_name` varchar(255) NOT NULL,
     `middle_name` varchar(255) DEFAULT NULL,
+    `last_name` varchar(255) NOT NULL,
     `street_no` int(11) NOT NULL,
     `city` varchar(255) NOT NULL,
     `state` varchar(255) NOT NULL,
