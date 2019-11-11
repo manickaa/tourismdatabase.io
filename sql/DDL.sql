@@ -48,6 +48,8 @@ CREATE TABLE `travel_location`
     `travelLocation_ID` int(11) NOT NULL AUTO_INCREMENT,
     `city` varchar(255) NOT NULL, 
     `country` varchar(255) NOT NULL, 
+    `amount_perAdult` decimal(8,2) NOT NULL,
+    `amount_perChild` decimal(8,2) NOT NULL
     CONSTRAINT `location` UNIQUE (`city`, `country`),
     PRIMARY KEY (`travelLocation_ID`)
 
@@ -56,10 +58,10 @@ CREATE TABLE `travel_location`
 -- Inserting values into `travel_location`
 --
 INSERT INTO `travel_location` VALUES
-(1, 'Paris', 'France'),
-(2, 'Bangkok', 'Thailand'),
-(3, 'Las Vegas', 'USA'),
-(4, 'Hawaii', 'USA');
+(1, 'Paris', 'France', 100, 50),
+(2, 'Bangkok', 'Thailand', 200, 150),
+(3, 'Las Vegas', 'USA', 300, 250),
+(4, 'Hawaii', 'USA', 200, 150);
 --
 -- Table Structure for `bookings`
 --
