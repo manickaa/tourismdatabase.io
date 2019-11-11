@@ -15,6 +15,35 @@ SELECT customers.customer_ID, customers.first_name, customers.middle_name, custo
 	GROUP BY customers.customer_ID
 	ORDER BY customers.customer_ID;
 --
+-- Add new customer
+--
+INSERT INTO customer (first_name, last_name, middle_name, street_no, city, state, country, postal_code, 
+			phone_number, email_id, passport_number, passport_countryofissue, passport_expirydate)
+			VALUES (:fnameInput, :lnameInput, :mname_Input, street_Input, country_Input, postal_codeInput,
+			phone_numberInput, email_idInput, passport_numberInput, passport_countryofissueInput, passport_expirydateInput);
+--
+-- Search Customer
+--
+SELECT customers.customer_ID, customers.first_name, customers.middle_name, customers.last_name, 
+		customers.street_no, customers.city, customers.state, customers.country,
+		customers.phone_number, customers.email_id, 
+		COUNT(bookings.booking_ID) AS '# Bookings',
+		COUNT(ratings.rating_ID) AS '# Reviews'
+		FROM customers
+	LEFT JOIN bookings ON customers.customer_ID = bookings.customer_ID
+	LEFT JOIN ratings ON customers.customer_ID = ratings.rating_ID
+	WHERE customers.email_id = :email_idSearchInput
+	GROUP BY customers.customer_ID
+	ORDER BY customers.customer_ID;
+--
+-- Update Customer
+--
+UPDATE customers
+SET first_name = :first_nameInput, last_name = :last_nameInput, street = :streetInput,
+	city = :cityInput, state = :stateInput, country = :countryInput, phone_number = :phone_numberInput,
+	email_id = :email_idInput
+WHERE customer_ID = :corresponding_ID_in_td;
+--
 -- SELECT query for `bookings` display
 --
 SELECT bookings.booking_ID, bookings.booking_date, bookings.departure_date, bookings.arrival_date,
@@ -24,6 +53,39 @@ SELECT bookings.booking_ID, bookings.booking_date, bookings.departure_date, book
 		LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
 		GROUP BY bookings.booking_ID
 		ORDER BY bookings.booking_ID;
+--
+-- Add new booking
+--
+INSERT INTO bookings(customer_ID, travelLocation_ID, departure_date, arrival_date, number_adults, number_children)
+			VALUES(:customer_IDInput, (SELECT travelLocation_ID FROM travel_location WHERE city = :travel_locationInput),
+				    :departure_dateInput, :arrival_dateInput, :number_adultsInput, :number_childrenInput);
+--
+-- Search booking
+--
+SELECT bookings.booking_ID, bookings.booking_date, bookings.departure_date, bookings.arrival_date,
+		bookings.number_adults, bookings.number_children, bookings.travelLocation_ID,
+		bookings.customer_ID FROM bookings
+		LEFT JOIN travel_location ON bookings.travelLocation_ID = travel_location.travelLocation_ID
+		LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
+		WHERE booking_ID = :booking_IDInput OR travelLocation_ID = :travelLocation_IDInput 
+				OR departure_date = :departure_dateInput OR arrival_date = :arrival_dateInput  
+		GROUP BY bookings.booking_ID
+		ORDER BY bookings.booking_ID;
+--
+-- Update Booking
+--
+UPDATE bookings
+SET travelLocation_ID = (SELECT travel_location.travelLocation_ID from travel_location INNER JOIN bookings ON travel_location.travelLocation_ID = bookings.travelLocation_ID
+							WHERE travel_location.city = :travel_locationInput),
+	departure_date = :departure_dateInput,
+	arrival_date = :arrival_dateInput,
+	number_adults = :number_adultsInput,
+	number_children = :number_childrenInput
+WHERE booking_ID = :corresponding_ID_in_td;
+--
+-- Delete booking
+--
+DELETE FROM booking WHERE booking_ID = :corresponding_ID_in_td;
 --
 -- SELECT query for `travel_location` display
 -- 
@@ -83,6 +145,28 @@ SELECT ratings.rating_ID, ratings.travelLocation_ID,
 		GROUP BY ratings.rating_ID
 		ORDER BY ratings.rating_ID;
 --
+-- Add new Rating
+--
+INSERT INTO ratings(customer_ID, travelLocation_ID, rating, review)
+			VALUES(:customer_IDInput, (SELECT travelLocation_ID FROM travel_location WHERE city = :travel_locationInput),
+				 :ratingInput, :reviewInput);
+--
+-- Search rating
+--
+SELECT ratings.rating_ID, ratings.travelLocation_ID,
+		travel_location.city AS 'Travel Location',
+		ratings.customer_ID,
+		CONCAT(customers.first_name, ' ', customers.last_name) AS 'Customer Name',
+		ratings.rating, ratings.review
+		FROM ratings
+		LEFT JOIN travel_location ON ratings.travelLocation_ID = travel_location.travelLocation_ID
+		LEFT JOIN customers ON ratings.customer_ID = customers.customer_ID
+		WHERE rating = :ratingInput AND ratings.travelLocation_ID = (SELECT travel_location.travelLocation_ID from travel_location INNER JOIN ratings 
+			ON ratings.travelLocation_ID = travel_location.travelLocation_ID 
+			WHERE travel_location.city = :cityInput)
+		GROUP BY ratings.rating_ID
+		ORDER BY ratings.rating_ID;
+--
 -- SELECT query for `payment` display
 --
 SELECT payment.payment_ID, payment.booking_ID, payment.payment_amount, payment.payment_date,
@@ -90,3 +174,26 @@ SELECT payment.payment_ID, payment.booking_ID, payment.payment_amount, payment.p
 		LEFT JOIN bookings ON payment.booking_ID = bookings.booking_ID
 		GROUP BY payment.payment_ID
 		ORDER BY payment.payment_ID;
+--
+-- Add new payment
+--
+INSERT INTO payment(booking_ID, payment_amount, payment_date, payment_description)
+			VALUES(:booking_IDInput, 
+				SELECT (t.amount_perAdult*b.number_adults) + (t.amount_perChild*b.number_children) 
+					* (DATEDIFF(b.arrival_date, b.departure_date)) AS payment_amount FROM bookings b INNER JOIN travel_location t 
+					ON b.travelLocation_ID = t.travelLocation_ID
+					WHERE booking_ID = :booking_IDInput,
+				:payment_dateInput, :payment_descriptionInput);
+--
+-- Search Payment
+--
+SELECT payment.payment_ID, payment.booking_ID, payment.payment_amount, payment.payment_date,
+		payment.payment_description FROM payment
+		LEFT JOIN bookings ON payment.booking_ID = bookings.booking_ID
+		WHERE payment.payment_ID = :payment_IDInput OR payment.booking_ID = :booking_IDInput OR payment.payment_date = :payment_dateInput
+		GROUP BY payment.payment_ID
+		ORDER BY payment.payment_ID;
+--
+-- Delete Payment
+--
+DELETE FROM payment WHERE payment_ID = :corresponding_ID_in_td;
