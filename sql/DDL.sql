@@ -135,8 +135,8 @@ CREATE TABLE `payment`
 -- Inserting values into `payment`
 --
 INSERT INTO `payment` VALUES
-(1, 1, 2000, '2019-12-12', 'Payment for Paris tour'),
-(2, 2, 3500, '2019-05-12', 'Payment for Bankgkok tour');
+(1, 1, 1000, '2019-12-12', 'Payment for Paris tour'),
+(2, 2, 4750, '2019-05-12', 'Payment for Bankgkok tour');
 --
 -- Table structure for `ratings`
 --
