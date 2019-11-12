@@ -197,3 +197,131 @@ SELECT payment.payment_ID, payment.booking_ID, payment.payment_amount, payment.p
 -- Delete Payment
 --
 DELETE FROM payment WHERE payment_ID = :corresponding_ID_in_td;
+
+					   
+-- MULTIPURPOSE Queries
+
+-- Get all city/country pairs to populate travel locations dropdowns
+SELECT CONCAT(travel_location.city, ', ', travel_locationcountry) FROM travel_location
+
+-- Get all tour guides names to populate tour guide dropdowns
+SELECT CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) FROM tour_guide
+
+-- Get all tour booking #s to populate tour guide dropdowns
+SELECT bookings.booking_ID FROM bookings
+
+
+-- Queries for TRAVEL LOCATION
+
+-- Display all options (null entry)
+SELECT travel_location.travelLocation_ID, travel_location.city, travel_location.country, 
+    COUNT(bookings.booking_ID) AS '# Bookings', 
+    COUNT(tour_guide.tourGuide_ID) AS '# Tour Guides', 
+    SUM(number_adults) + SUM(number_children) AS '# Adults + Kids',
+    ROUND(AVG(ratings.rating),2) AS 'Average Review'
+    FROM travel_location 
+LEFT JOIN bookings ON travel_location.travelLocation_ID = bookings.travelLocation_ID
+LEFT JOIN assignment ON bookings.booking_ID = assignment.booking_ID
+LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
+LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
+LEFT JOIN ratings ON customers.customer_ID = ratings.customer_ID
+GROUP BY travel_location.travelLocation_ID
+ORDER BY travel_location.travelLocation_ID
+
+-- Display all options (search with selected city/country)
+SELECT travel_location.travelLocation_ID, travel_location.city, travel_location.country, 
+    COUNT(bookings.booking_ID) AS '# Bookings', 
+    COUNT(tour_guide.tourGuide_ID) AS '# Tour Guides', 
+    SUM(number_adults) + SUM(number_children) AS '# Adults + Kids',
+    ROUND(AVG(ratings.rating),2) AS 'Average Review'
+    FROM travel_location 
+LEFT JOIN bookings ON travel_location.travelLocation_ID = bookings.travelLocation_ID
+LEFT JOIN assignment ON bookings.booking_ID = assignment.booking_ID
+LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
+LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
+LEFT JOIN ratings ON customers.customer_ID = ratings.customer_ID
+WHERE travel_location.city = :city_input AND travel_location.country = :county_input
+GROUP BY travel_location.travelLocation_ID
+ORDER BY travel_location.travelLocation_ID
+
+--Add & display new Travel Location data based on form submission
+INSERT INTO travel_location (city, country) VALUES (:city_input, :country_input) 
+SELECT * FROM travel_location WHERE travel_location.city = :city_input AND travel_location.country = :country_input
+
+
+-- Queries for TOUR GUIDE
+
+--Display all options
+SELECT tour_guide.tourGuide_ID, tour_guide.first_Name, tour_guide.last_name, 
+    COUNT(assignment.tourGuide_travelLocation) AS '# Assignments',
+    COUNT(travel_location.travelLocation_ID) AS '# Locations'
+    FROM tour_guide
+LEFT JOIN assignment ON tour_guide.tourGuide_ID = assignment.tourGuide_ID
+LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
+GROUP BY tour_guide.tourGuide_ID
+ORDER BY tour_guide.tourGuide_ID
+
+-- Display all options (search with selected city/country)
+SELECT tour_guide.tourGuide_ID, tour_guide.first_name, tour_guide.last_name, 
+    COUNT(assignment.tourGuide_travelLocation) AS '# Assignments',
+    COUNT(travel_location.travelLocation_ID) AS '# Locations'
+    FROM tour_guide
+	WHERE tour_guide.first_name = :first_input AND tour_guide.last_name = :last_input
+LEFT JOIN assignment ON tour_guide.tourGuide_ID = assignment.tourGuide_ID
+LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
+GROUP BY tour_guide.tourGuide_ID
+ORDER BY tour_guide.tourGuide_ID
+
+-- get a single character's data for the Update People form
+SELECT tour_guideID, first_name, last_name FROM tour_guide WHERE tour_guideID = :tour_guideID_from_browse_form
+
+--Update Tour Guide data based on form submission
+UPDATE tour_guide SET first_name = :first_input, last_Name = :last_input WHERE tourGuide_ID = :tour_guideID_from_form
+
+--Add & display new Tour Guide data based on form submission
+INSERT INTO tour_guide (first_name, last_name) VALUES (:first_input, :last_input) 
+SELECT * FROM tour_guide WHERE tour_guide.first_name = :first_input AND tour_guide.last_name = :last_input
+
+
+-- Queries for ASSIGNMENTS 
+
+-- Display all options
+SELECT assignment.tourGuide_travelLocation AS 'Assignment ID#', assignment.booking_ID AS 'Booking ID#',
+CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS 'Guide',
+CONCAT(travel_location.city, ', ', travel_location.country) AS 'Destination',
+CONCAT(customers.first_name, ' ', customers.last_name) AS 'Customer Name',
+bookings.departure_date AS 'Departure Date',
+bookings.arrival_date AS 'Arrival Date',
+SUM(bookings.number_adults) AS '# Adults',
+SUM(bookings.number_children) AS '# Kids'
+    FROM assignment
+LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
+LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
+LEFT JOIN bookings ON assignment.booking_ID = bookings.booking_ID
+LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
+GROUP BY assignment.tourGuide_travelLocation
+ORDER BY assignment.tourGuide_travelLocation
+
+-- Display all options (search with input)
+SELECT assignment.tourGuide_travelLocation AS 'Assignment ID#', assignment.booking_ID AS 'Booking ID#',
+CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS 'Guide',
+CONCAT(travel_location.city, ', ', travel_location.country) AS 'Destination',
+CONCAT(customers.first_name, ' ', customers.last_name) AS 'Customer Name',
+bookings.departure_date AS 'Departure Date',
+bookings.arrival_date AS 'Arrival Date',
+SUM(bookings.number_adults) AS '# Adults',
+SUM(bookings.number_children) AS '# Kids'
+    FROM assignment
+LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
+LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
+LEFT JOIN bookings ON assignment.booking_ID = bookings.booking_ID
+LEFT JOIN customers ON bookings.customer_ID = customers.customer_ID
+WHERE assignment.booking_ID = :bookingID_input 
+	AND assignment.travelLocation_ID = :locationID_input 
+	AND assignment.guide = :tour_guideID_input
+GROUP BY assignment.tourGuide_travelLocation
+ORDER BY assignment.tourGuide_travelLocation
+
+--Add & display new assignment data based on form submission
+INSERT INTO assignments () VALUES (:first_input, :last_input) 
+SELECT * FROM tour_guide WHERE tour_guide.first_name = :first_input AND tour_guide.last_name = :last_input
