@@ -202,10 +202,10 @@ DELETE FROM payment WHERE payment_ID = :corresponding_ID_in_td;
 -- MULTIPURPOSE Queries
 
 -- Get all city/country pairs to populate travel locations dropdowns
-SELECT CONCAT(travel_location.city, ', ', travel_location.country) AS location FROM travel_location
+SELECT travel_location.travelLocation_ID, CONCAT(travel_location.city, ', ', travel_location.country) AS location FROM travel_location
 
 -- Get all tour guides names to populate tour guide dropdowns
-SELECT CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS guide_name FROM tour_guide
+SELECT tourGuide_ID, CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) as guide FROM tour_guide
 
 -- Get all tour booking #s to populate tour guide dropdowns
 SELECT bookings.booking_ID FROM bookings
