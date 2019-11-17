@@ -90,10 +90,10 @@ DELETE FROM booking WHERE booking_ID = :corresponding_ID_in_td;
 -- SELECT query for `travel_location` display
 -- 
 SELECT travel_location.travelLocation_ID, travel_location.city, travel_location.country, 
-    COUNT(bookings.booking_ID) AS '# Bookings', 
-    COUNT(tour_guide.tourGuide_ID) AS '# Tour Guides', 
-    SUM(number_adults) + SUM(number_children) AS '# Adults + Kids',
-    ROUND(AVG(ratings.rating),2) AS 'Average Review'
+    COUNT(bookings.booking_ID) AS '#_bookings', 
+    COUNT(tour_guide.tourGuide_ID) AS '#_tour_guides', 
+    SUM(number_adults) + SUM(number_children) AS '#_adults_kids',
+    ROUND(AVG(ratings.rating),2) AS 'average_review'
     FROM travel_location 
 LEFT JOIN bookings ON travel_location.travelLocation_ID = bookings.travelLocation_ID
 LEFT JOIN assignment ON bookings.booking_ID = assignment.booking_ID
