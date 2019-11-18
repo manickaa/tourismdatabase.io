@@ -105,14 +105,15 @@ ORDER BY travel_location.travelLocation_ID;
 --
 -- SELECT query for `tour_guide` display
 -- 
-SELECT tour_guide.tourGuide_ID, tour_guide.first_Name, tour_guide.last_Name, 
+SELECT tour_guide.tourGuide_ID, tour_guide.first_name, tour_guide.last_name, 
     COUNT(assignment.tourGuide_travelLocation) AS '# Assignments',
     COUNT(travel_location.travelLocation_ID) AS '# Locations'
     FROM tour_guide
 LEFT JOIN assignment ON tour_guide.tourGuide_ID = assignment.tourGuide_ID
 LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
+WHERE tour_guide.tourGuide_ID = ;user_selection
 GROUP BY tour_guide.tourGuide_ID
-ORDER BY tour_guide.tourGuide_ID;
+ORDER BY tour_guide.tourGuide_ID
 --
 -- SELECT query for `assignments` display
 -- 
