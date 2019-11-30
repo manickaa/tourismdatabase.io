@@ -287,14 +287,14 @@ SELECT * FROM tour_guide WHERE tour_guide.first_name = :first_input AND tour_gui
 -- Queries for ASSIGNMENTS 
 
 -- Display all options
-SELECT assignment.tourGuide_travelLocation AS 'Assignment ID#', assignment.booking_ID AS 'Booking ID#',
-CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS 'Guide',
-CONCAT(travel_location.city, ', ', travel_location.country) AS 'Destination',
-CONCAT(customers.first_name, ' ', customers.last_name) AS 'Customer Name',
-bookings.departure_date AS 'Departure Date',
-bookings.arrival_date AS 'Arrival Date',
-SUM(bookings.number_adults) AS '# Adults',
-SUM(bookings.number_children) AS '# Kids'
+SELECT assignment.tourGuide_travelLocation AS assignment_ID, assignment.booking_ID AS booking_ID,
+CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS guide,
+CONCAT(travel_location.city, ', ', travel_location.country) AS destination,
+CONCAT(customers.first_name, ' ', customers.last_name) AS customer,
+bookings.departure_date AS departure_date,
+bookings.arrival_date AS arrival_date,
+SUM(bookings.number_adults) AS count_adults,
+SUM(bookings.number_children) AS count_kids
     FROM assignment
 LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
 LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
@@ -304,14 +304,14 @@ GROUP BY assignment.tourGuide_travelLocation
 ORDER BY assignment.tourGuide_travelLocation
 
 -- Display all options (search with input)
-SELECT assignment.tourGuide_travelLocation AS 'Assignment ID#', assignment.booking_ID AS 'Booking ID#',
-CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS 'Guide',
-CONCAT(travel_location.city, ', ', travel_location.country) AS 'Destination',
-CONCAT(customers.first_name, ' ', customers.last_name) AS 'Customer Name',
-bookings.departure_date AS 'Departure Date',
-bookings.arrival_date AS 'Arrival Date',
-SUM(bookings.number_adults) AS '# Adults',
-SUM(bookings.number_children) AS '# Kids'
+SELECT assignment.tourGuide_travelLocation AS assignment_ID, assignment.booking_ID AS booking_ID,
+CONCAT(tour_guide.first_name, ' ', tour_guide.last_name) AS guide,
+CONCAT(travel_location.city, ', ', travel_location.country) AS destination,
+CONCAT(customers.first_name, ' ', customers.last_name) AS customer,
+bookings.departure_date AS departure_date,
+bookings.arrival_date AS arrival_date,
+SUM(bookings.number_adults) AS count_adults,
+SUM(bookings.number_children) AS count_kids
     FROM assignment
 LEFT JOIN tour_guide ON assignment.tourGuide_ID = tour_guide.tourGuide_ID
 LEFT JOIN travel_location ON assignment.travelLocation_ID = travel_location.travelLocation_ID
@@ -324,5 +324,6 @@ GROUP BY assignment.tourGuide_travelLocation
 ORDER BY assignment.tourGuide_travelLocation
 
 --Add & display new assignment data based on form submission
-INSERT INTO assignments () VALUES (:first_input, :last_input) 
+INSERT INTO assignment (booking_ID, travelLocation_ID, tourGuide_ID)
+	VALUES(:booking_ID, (SELECT bookings.travelLocation_ID FROM bookings WHERE booking_ID=:booking_ID),:tourguide_ID)
 SELECT * FROM tour_guide WHERE tour_guide.first_name = :first_input AND tour_guide.last_name = :last_input
